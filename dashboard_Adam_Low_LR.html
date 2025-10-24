@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Experiment: Adam_Low_LR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      margin: 0 8px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .stats {
+      margin: 15px auto;
+      padding: 10px 15px;
+      max-width: 450px;
+      background-color: #e8f4f8;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+
+    .gif-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+
+    .gif-container {
+      margin: 10px;
+      text-align: center;
+    }
+
+    .gif-label {
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    img {
+      max-width: 600px;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+  <script>
+    function pauseGifs() {
+      const gifs = document.querySelectorAll('img');
+      gifs.forEach(img => {
+        if (!img.dataset.originalSrc) {
+          img.dataset.originalSrc = img.src;
+        }
+        // Replace GIF with its first frame (pause)
+        img.src = img.dataset.originalSrc + "?pause=" + Date.now();
+      });
+    }
+
+    function resetPage() {
+      location.reload();
+    }
+
+    // Listen for parent dashboard messages (postMessage) to trigger pause/reset
+    window.addEventListener('message', function (event) {
+      try {
+        const data = event.data || {};
+        if (data && data.command === 'pause') {
+          pauseGifs();
+        } else if (data && data.command === 'reset') {
+          resetPage();
+        }
+      } catch (e) {
+        // ignore malformed messages
+      }
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="header">
+    <h2>Experiment: Adam_Low_LR</h2>
+  </div>
+
+  <!-- Controls moved to the main dashboard sidebar -->
+
+  <div class="stats">
+    <p><strong>Learning Rate:</strong> 0.000010</p>
+    <p><strong>Final Training Loss:</strong> 0.6613</p>
+    <p><strong>Final Validation Loss:</strong> 0.6352</p>
+    <p><strong>Final Validation Accuracy:</strong> 86.04%</p>
+    <p><strong>Total Epochs:</strong> 20</p>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_0_VG.gif" alt="VG GIF for class 0">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_0_IG.gif" alt="IG GIF for class 0">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_1_VG.gif" alt="VG GIF for class 1">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_1_IG.gif" alt="IG GIF for class 1">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_2_VG.gif" alt="VG GIF for class 2">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_2_IG.gif" alt="IG GIF for class 2">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_3_VG.gif" alt="VG GIF for class 3">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_3_IG.gif" alt="IG GIF for class 3">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_4_VG.gif" alt="VG GIF for class 4">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_4_IG.gif" alt="IG GIF for class 4">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_5_VG.gif" alt="VG GIF for class 5">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_5_IG.gif" alt="IG GIF for class 5">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_6_VG.gif" alt="VG GIF for class 6">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_6_IG.gif" alt="IG GIF for class 6">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_7_VG.gif" alt="VG GIF for class 7">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_7_IG.gif" alt="IG GIF for class 7">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_8_VG.gif" alt="VG GIF for class 8">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_8_IG.gif" alt="IG GIF for class 8">
+    </div>
+  </div>
+  <div class="gif-row">
+    <div class="gif-container">
+      <div class="gif-label">VG</div>
+      <img src="Adam_Low_LR/class_9_VG.gif" alt="VG GIF for class 9">
+    </div>
+    <div class="gif-container">
+      <div class="gif-label">IG</div>
+      <img src="Adam_Low_LR/class_9_IG.gif" alt="IG GIF for class 9">
+    </div>
+  </div>
+</body>
+
+</html>
